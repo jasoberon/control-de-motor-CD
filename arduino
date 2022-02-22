@@ -1,1 +1,46 @@
+//Cambio de giro con el CI L293D
+//para el manejo de un motor de CC.
+
+int up = 7;
+int down = 8;
+int in1A = 2;
+int in2A = 3;
+int bomba= 12; 
+
+void setup() {
+  pinMode(11,OUTPUT);
+  pinMode(in1A, OUTPUT);
+  pinMode(in2A,OUTPUT);
+  pinMode(bomba,OUTPUT);  
+  pinMode(in2A,OUTPUT);
+  pinMode(down,INPUT);  
+digitalWrite(11, LOW);
+
+}
+
+void loop() {
+
+int x=digitalRead(up);
+int y=digitalRead(down);  
+  
+  if (x == LOW)
+  {
+  digitalWrite(bomba,HIGH);  
+  delay(2000);
+  digitalWrite(bomba,LOW); 
+    
+  digitalWrite(11,HIGH); // motor gira a la derecha
+  digitalWrite(in1A,LOW);
+  digitalWrite(in2A,HIGH);    
+  }
+  
+  
+  if (y == LOW)
+  {
+  digitalWrite(11,HIGH); // motor gira a la izquierda
+  digitalWrite(in1A,HIGH);
+  digitalWrite(in2A,LOW);   
+  }
+
+}
 
