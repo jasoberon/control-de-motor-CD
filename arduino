@@ -8,12 +8,15 @@ int up = 7;
 int down = 8;
 int in1A = 2;
 int in2A = 3;
+int in1B = 4;
+int in2B = 5;
 int bomba = 12; 
 int start = 10;
 int eststart=0;
 int estup=0;
 int estdown=0;
 int sequence = 0;
+
 
 void setup() {
   pinMode(11,OUTPUT);
@@ -25,12 +28,19 @@ void setup() {
   pinMode(down,INPUT); 
   pinMode(start,INPUT);
   digitalWrite(11, LOW);
+  pinMode(9,OUTPUT);   //bomba  
+  pinMode(in1B, OUTPUT);
+  pinMode(in2B,OUTPUT);  
   
 //Asegurar apagar motores
   digitalWrite(in1A, LOW);
   digitalWrite(in2A, LOW);
   digitalWrite(11, LOW);
 
+  digitalWrite(in1B, LOW);
+  digitalWrite(in2B, LOW);
+  digitalWrite(9, LOW);
+  
 }
 
 void loop() {
@@ -46,6 +56,12 @@ switch (sequence)
   digitalWrite(in1A, LOW);
   digitalWrite(in2A, LOW);
   digitalWrite(11, LOW);
+  digitalWrite(bomba, LOW);  
+  
+  digitalWrite(in1B, LOW);
+  digitalWrite(in2B, LOW);
+  digitalWrite(9, LOW);  
+  
   delay(200);
     
   if (eststart == HIGH && estup == HIGH && estdown == LOW)
@@ -61,6 +77,11 @@ switch (sequence)
   digitalWrite(in2A, LOW);
   digitalWrite(11, HIGH);
   digitalWrite(bomba, HIGH);
+
+  digitalWrite(in1B, HIGH);
+  digitalWrite(in2B, LOW);
+  digitalWrite(9, HIGH);
+
   
   if (eststart == LOW && estup == LOW && estdown == HIGH)
   {
@@ -76,6 +97,12 @@ switch (sequence)
   digitalWrite(11, HIGH);
   digitalWrite(bomba, LOW);  
   
+  digitalWrite(bomba, LOW);  
+  
+  digitalWrite(in1B, LOW);
+  digitalWrite(in2B, LOW);
+  digitalWrite(9, LOW);   
+  
   if (eststart == LOW && estup == HIGH && estdown == LOW)
   {
     sequence = 0;
@@ -86,5 +113,3 @@ switch (sequence)
 }
   
 }
-
-
